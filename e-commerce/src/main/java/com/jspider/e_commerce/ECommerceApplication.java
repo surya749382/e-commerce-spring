@@ -1,4 +1,4 @@
-package com.japider.e_commerce;
+package com.jspider.e_commerce;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

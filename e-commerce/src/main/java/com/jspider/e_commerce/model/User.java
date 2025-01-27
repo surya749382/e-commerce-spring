@@ -1,5 +1,6 @@
-package com.japider.model;
+package com.jspider.e_commerce.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +16,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class User {
 	
 	@Id
@@ -39,9 +47,17 @@ public class User {
 	@CollectionTable(name="payment_information", joinColumns = @JoinColumn(name="user_id"))
 	private List<PaymentInformation> paymentInformation = new ArrayList();
 	
+	@JsonIgnore // to avoid infinite loop while fetching the data
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	@JsonIgnore // to avoid infinite loop
 	private List<Rating> ratings = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Review> reviews = new ArrayList<>();
+	
+	private LocalDateTime createdAt;
+	
+	
 	
 	
 	

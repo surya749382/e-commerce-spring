@@ -1,4 +1,4 @@
-package com.japider.config;
+package com.jspider.e_commerce.config;
 
 import java.util.Date;
 
