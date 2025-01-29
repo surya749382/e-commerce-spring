@@ -119,6 +119,11 @@ Product product=  findProductById(productId);
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<Product> getAllProducts() {
+		return productRepository.findAll();
+	}
 
 	@Override
 	public List<Product> findProductByCategory(String category) {
@@ -175,6 +180,11 @@ Product product=  findProductById(productId);
 		
 	}
 
+	@Override
+	public List<Product> recentlyAddedProduct() {
+		
+		return productRepository.findTop10ByOrderByCreatedAtDesc();
+	}
 	
 
 }
