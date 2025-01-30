@@ -32,14 +32,16 @@ public class ProductServiceImplementation implements ProductService {
 
 	@Override
 	public Product createProduct(CreateProductRequest req) {
+//	System.out.println( "Title "  + req.getTopLevelCategory());
 	Category topLevel = categoryRepository.findByName(req.getTopLevelCategory());
+	System.out.println("top " + topLevel);
 	
 	if(topLevel == null) {
 		Category topLevelCategory = new Category();
 		topLevelCategory.setName(req.getTopLevelCategory());
 		topLevelCategory.setLevel(1);
-		
-		topLevel = categoryRepository.save(topLevel);
+		System.out.println(topLevelCategory);
+		topLevel = categoryRepository.save(topLevelCategory);
 		
 		
 		
@@ -67,6 +69,11 @@ public class ProductServiceImplementation implements ProductService {
 		
 		thirdLevel=categoryRepository.save(thirdLevelCategory);
 	}
+	
+	System.out.println("first " + topLevel );
+	System.out.println("second " + secondLevel );
+	System.out.println("third " + thirdLevel );
+
 	Product product=new Product();
 	product.setTitle(req.getTitle());
 	product.setColor(req.getColor());
@@ -76,7 +83,7 @@ public class ProductServiceImplementation implements ProductService {
 	product.setImageUrl(req.getImageUrl());
 	product.setBrand(req.getBrand());
 	product.setPrice(req.getPrice());
-	product.setSizes(req.getSize());
+	product.setSizes(req.getSizes());
 	product.setQuantity(req.getQuantity());
 	product.setCategory(thirdLevel);
 	product.setCreatedAt(LocalDateTime.now());
@@ -133,8 +140,9 @@ Product product=  findProductById(productId);
 	
 	@Override
 	public Product findProductById(Long productId) throws ProductException {
+		System.out.println("******************************");
 		Optional<Product> opt = productRepository.findById(productId);
-		
+		System.out.println("++++++++++++++++++++++++++++++++++++");
 		if(opt.isPresent()) {
 			return opt.get();
 		}
@@ -146,6 +154,8 @@ Product product=  findProductById(productId);
 			Integer maxPrice, Integer minDiscount, String sort, String stock, Integer pageNumber, Integer pageSize) {
 
 		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		
+		
 		
 		List<Product> products = productRepository.filterProducts(category, minPrice, maxPrice, minDiscount, sort);
 		

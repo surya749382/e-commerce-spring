@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jspider.e_commerce.config.JwtProvider;
 import com.jspider.e_commerce.exception.UserException;
+import com.jspider.e_commerce.model.Cart;
 import com.jspider.e_commerce.model.User;
 import com.jspider.e_commerce.repository.UserRepository;
 import com.jspider.e_commerce.request.LoginRequest;
 import com.jspider.e_commerce.response.AuthResponse;
+import com.jspider.e_commerce.service.CartService;
 import com.jspider.e_commerce.service.CustomUserServiceImplementation;
 
 @RestController
@@ -40,6 +42,8 @@ public class AuthController {
 		this.passwordEncoder = passwordEncoder;
 		this.jwtProvider = jwtProvider;
 	}
+	@Autowired
+	private CartService cartService;
 	
 	@PostMapping("/signup")
 	public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) throws UserException{
@@ -61,6 +65,7 @@ public class AuthController {
 		createdUser.setLastName(lastName);
 		
 		User savedUser = userRepository.save(createdUser);
+		Cart cart = cartService.createCart(savedUser);
 		
 		Authentication authentication = new UsernamePasswordAuthenticationToken(savedUser.getEmail(), savedUser.getPassword());
 		SecurityContextHolder.getContext().setAuthentication(authentication);

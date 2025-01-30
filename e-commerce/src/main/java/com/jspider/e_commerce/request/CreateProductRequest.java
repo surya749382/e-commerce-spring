@@ -29,7 +29,7 @@ public class CreateProductRequest {
 	
 	private String color;
 	
-	private Set<Size> size = new HashSet<>();
+	private Set<Size> sizes = new HashSet<>();
 	
 	private String imageUrl;
 	

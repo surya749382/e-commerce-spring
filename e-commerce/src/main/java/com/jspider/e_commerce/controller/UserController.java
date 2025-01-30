@@ -25,7 +25,7 @@ public class UserController {
 
 		System.out.println("/api/users/profile");
 		User user=userService.findUserProfileByJwt(jwt);
-		return new ResponseEntity<User>(user,HttpStatus.ACCEPTED);
+		return new ResponseEntity<User>(user,HttpStatus.OK);
 	
 }
 } 

@@ -18,9 +18,9 @@ public class CartServiceImplementation implements CartService {
 	
 	@Autowired
 	private CartRepository cartRepository;
-	
+	@Autowired
 	private CartItemService cartItemService;
-	
+	@Autowired
 	private ProductService productService;
 	
 
@@ -38,6 +38,8 @@ public class CartServiceImplementation implements CartService {
 		Product product=productService.findProductById(req.getProductId());
 		
 		CartItem isPresent=cartItemService.isCartItemExist(cart, product, req.getSize(),userId);
+		System.out.println(isPresent+"***************************************");
+		
 		
 		if(isPresent == null) {
 			CartItem cartItem = new CartItem();

@@ -30,8 +30,11 @@ public class AdminProductController {
 	@PostMapping("/")
 	public ResponseEntity<Product> createProduct(@RequestBody CreateProductRequest req){
 		
+		if(req != null) {
+			System.out.println("Surya here");
+		}
 		Product product = productService.createProduct(req);
-		
+		System.out.println("Surya there");
 		return new ResponseEntity<Product>(product, HttpStatus.CREATED);
 		
 	}

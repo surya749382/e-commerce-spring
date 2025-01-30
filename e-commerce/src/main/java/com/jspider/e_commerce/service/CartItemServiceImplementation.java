@@ -20,7 +20,7 @@ public class CartItemServiceImplementation implements CartItemService {
 	
 	@Autowired
 	public CardItemRepository cartItemRepository;
-	
+	@Autowired
 	public UserService userService;
 	@Autowired
 	public CartRepository cartRepository;
