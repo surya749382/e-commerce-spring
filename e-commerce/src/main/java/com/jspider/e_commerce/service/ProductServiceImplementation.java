@@ -140,9 +140,9 @@ Product product=  findProductById(productId);
 	
 	@Override
 	public Product findProductById(Long productId) throws ProductException {
-		System.out.println("******************************");
+//		System.out.println("******************************");
 		Optional<Product> opt = productRepository.findById(productId);
-		System.out.println("++++++++++++++++++++++++++++++++++++");
+//		System.out.println("++++++++++++++++++++++++++++++++++++");
 		if(opt.isPresent()) {
 			return opt.get();
 		}
