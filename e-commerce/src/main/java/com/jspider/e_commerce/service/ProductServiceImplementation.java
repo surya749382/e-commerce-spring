@@ -32,15 +32,16 @@ public class ProductServiceImplementation implements ProductService {
 
 	@Override
 	public Product createProduct(CreateProductRequest req) {
-//	System.out.println( "Title "  + req.getTopLevelCategory());
+	System.out.println( "req "  + req);
 	Category topLevel = categoryRepository.findByName(req.getTopLevelCategory());
 	System.out.println("top " + topLevel);
 	
 	if(topLevel == null) {
 		Category topLevelCategory = new Category();
+		System.out.println("req.getTopLevelCategory() "+ req.getTopLevelCategory());
 		topLevelCategory.setName(req.getTopLevelCategory());
 		topLevelCategory.setLevel(1);
-		System.out.println(topLevelCategory);
+		System.out.println("top level "+topLevelCategory);
 		topLevel = categoryRepository.save(topLevelCategory);
 		
 		

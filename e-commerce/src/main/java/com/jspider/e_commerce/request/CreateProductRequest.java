@@ -7,10 +7,11 @@ import com.jspider.e_commerce.model.Size;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
-
+@ToString
 public class CreateProductRequest {
 	
 	private String title;
