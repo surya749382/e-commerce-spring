@@ -36,7 +36,9 @@ public class AppConfig {
 
 						cfg.setAllowedOrigins(Arrays.asList(
 
-								"http://localhost:3000", "http://localhost:4000"
+								"http://localhost:3000", 
+								"http://localhost:4000",
+								"https://fyndit-topaz.vercel.app/"
 
 				));
 						cfg.setAllowedMethods(Collections.singletonList("*"));
